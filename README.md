@@ -1,4 +1,5 @@
 # DBMS_-LAB_2410030266_2CSE17
+## Employee Table Structure
 ```
 +----------+---------------+------+-----+---------+-------+
 | Field    | Type          | Null | Key | Default | Extra |
