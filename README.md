@@ -1,5 +1,5 @@
 # DBMS_-LAB_2410030266_2CSE17
-## Employee Table Structure
+## Employee Table Structure:
 ```
 +----------+---------------+------+-----+---------+-------+
 | Field    | Type          | Null | Key | Default | Extra |
@@ -13,4 +13,13 @@
 | COMM     | decimal(7,0)  | YES  |     | NULL    |       |
 | DEPTNO   | int(2)        | YES  | MUL | NULL    |       |
 +----------+---------------+------+-----+---------+-------+
+```
+## Department Table Structure:
+```
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| DEPTNO | int(2)      | NO   | PRI | NULL    |       |
+| DNAME  | varchar(15) | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
 ```
