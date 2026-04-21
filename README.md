@@ -1175,6 +1175,278 @@ SELECT ENAME, LENGTH(ENAME) FROM employee;
 ```
 
 ---
+### 51. Display empno, ename, deptno with department name (CASE used instead of DECODE)
+```sql
+SELECT EMPNO,ENAME,CASE DEPTNO WHEN 10 THEN 'RESEARCH' WHEN 20 THEN 'ACCOUNTING' WHEN 30 THEN 'SALES' WHEN 40 THEN 'OPERATIONS' END AS DNAME FROM employee;
+```
+
+### 📊 Output
+```sql
++-------+--------+------------+
+| EMPNO | ENAME  | DNAME      |
++-------+--------+------------+
+|  7369 | SMITH  | ACCOUNTING |
+|  7499 | ALLEN  | SALES      |
+|  7521 | WARD   | SALES      |
+|  7566 | JONES  | ACCOUNTING |
+|  7654 | MARTIN | SALES      |
+|  7698 | BLAKE  | SALES      |
+|  7782 | CLARK  | ACCOUNTING |
+|  7788 | SCOTT  | OPERATIONS |
+|  7839 | KING   | ACCOUNTING |
+|  7844 | TURNER | SALES      |
+|  7876 | ADAMS  | ACCOUNTING |
+|  7900 | JAMES  | SALES      |
+|  7902 | FORD   | ACCOUNTING |
+|  7934 | MILLER | RESEARCH   |
++-------+--------+------------+
+```
+
+---
+
+### 52. Display your age in days.
+```sql
+SELECT DATEDIFF(CURDATE(),'2003-01-01') AS AGE_IN_DAYS;
+```
+
+### 📊 Output
+```sql
++-------------+
+| AGE_IN_DAYS |
++-------------+
+|        8511 |
++-------------+
+```
+
+---
+
+### 53. Display your age in months.
+```sql
+SELECT TIMESTAMPDIFF(MONTH,'2003-01-01',CURDATE()) AS AGE_IN_MONTHS;
+```
+
+### 📊 Output
+```sql
++---------------+
+| AGE_IN_MONTHS |
++---------------+
+|           279 |
++---------------+
+```
+
+---
+
+### 54. Display the current date in formatted style
+```sql
+SELECT DATE_FORMAT(CURDATE(),'%D %M %W %Y');
+```
+
+### 📊 Output
+```sql
++--------------------------------------+
+| DATE_FORMAT(CURDATE(),'%D %M %W %Y') |
++--------------------------------------+
+| 21st April Tuesday 2026              |
++--------------------------------------+
+```
+
+---
+
+### 55. Display the following output for each row from employee table.
+```sql
+SELECT CONCAT(ENAME,' has joined on ',DATE_FORMAT(HIREDATE,'%W %D %M %Y')) FROM employee;
+```
+
+### 📊 Output
+```sql
++--------------------------------------+
+| DATE_FORMAT(CURDATE(),'%D %M %W %Y') |
++--------------------------------------+
+| 21st April Tuesday 2026              |
++--------------------------------------+
+```
+
+---
+
+### 56. Scott has joined the company on Wednesday 13th August Nineteen Ninety
+```sql
+SELECT CONCAT(ENAME,' has joined the company on ',DATE_FORMAT(HIREDATE,'%W %D %M %Y')) FROM employee WHERE ENAME='SCOTT';
+```
+
+### 📊 Output
+```sql
++---------------------------------------------------------------------------------+
+| CONCAT(ENAME,' has joined the company on ',DATE_FORMAT(HIREDATE,'%W %D %M %Y')) |
++---------------------------------------------------------------------------------+
+| SCOTT has joined the company on Thursday 9th December 1982                      |
++---------------------------------------------------------------------------------+
+```
+
+---
+ ### 57. Find the date for nearest Saturday after current date.
+ ```sql
+SELECT DATE_ADD(CURDATE(),INTERVAL (7-DAYOFWEEK(CURDATE())) DAY);
+```
+
+### 📊 Output
+```sql
++-----------------------------------------------------------+
+| DATE_ADD(CURDATE(),INTERVAL (7-DAYOFWEEK(CURDATE())) DAY) |
++-----------------------------------------------------------+
+| 2026-04-25                                                |
++-----------------------------------------------------------+
+```
+
+---
+
+### 58. Display current time.
+```sql
+SELECT CURTIME();
+```
+
+### 📊 Output
+```sql
++-----------+
+| CURTIME() |
++-----------+
+| 18:52:18  |
++-----------+
+```
+
+---
+
+### 59. Display the date three months before the current date
+```sql
+SELECT DATE_SUB(CURDATE(),INTERVAL 3 MONTH);
+```
+
+### 📊 Output
+```sql
++--------------------------------------+
+| DATE_SUB(CURDATE(),INTERVAL 3 MONTH) |
++--------------------------------------+
+| 2026-01-21                           |
++--------------------------------------+
+```
+
+---
+
+### 60. Display those employees who joined in the month of Dec.
+```sql
+SELECT * FROM employee WHERE MONTH(HIREDATE)=12;
+```
+
+### 📊 Output
+```sql
++-------+-------+---------+------+------------+------+------+--------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+-------+---------+------+------------+------+------+--------+
+|  7369 | SMITH | CLERK   | 7902 | 1980-12-17 |  880 | NULL |     20 |
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3300 | NULL |     40 |
+|  7900 | JAMES | CLERK   | 7698 | 1981-12-03 | 1045 | NULL |     30 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3300 | NULL |     20 |
++-------+-------+---------+------+------------+------+------+--------+
+```
+
+---
+
+### 61. Display those employees whose first 2 characters from hire date = last 2 characters of salary.
+```sql
+SELECT * FROM employee WHERE LEFT(HIREDATE,2)=RIGHT(SAL,2);
+```
+
+### 📊 Output
+```sql
+Empty set (0.001 sec)
+
+```
+
+---
+
+### 62. Display those employees whose 10% of salary is equal to the year of joining.
+```sql
+SELECT * FROM employee WHERE (SAL*0.10)=YEAR(HIREDATE);
+```
+
+### 📊 Output
+```sql
+Empty set (0.001 sec)
+
+```
+
+---
+
+### 63. Display those employees who joined the company before 15 of the month.
+```sql
+SELECT * FROM employee WHERE DAY(HIREDATE)<15;
+```
+
+### 📊 Output
+```sql
++-------+--------+----------+------+------------+------+------+--------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+--------+----------+------+------------+------+------+--------+
+|  7566 | JONES  | MANAGER  | 7839 | 1981-04-02 | 3273 | NULL |     20 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 3135 | NULL |     30 |
+|  7782 | CLARK  | MANAGER  | 7839 | 1981-06-09 | 2695 | NULL |     20 |
+|  7788 | SCOTT  | ANALYST  | 7566 | 1982-12-09 | 3300 | NULL |     40 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500 |    0 |     30 |
+|  7876 | ADAMS  | CLERK    | 7788 | 1983-01-12 | 1210 | NULL |     20 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 | 1045 | NULL |     30 |
+|  7902 | FORD   | ANALYST  | 7566 | 1981-12-03 | 3300 | NULL |     20 |
++-------+--------+----------+------+------------+------+------+--------+
+```
+
+---
+
+### 64. Display those employees who has joined before 15th of the month
+```sql
+SELECT * FROM employee WHERE DAY(HIREDATE)<15;
+```
+
+### 📊 Output
+```sql
++-------+--------+----------+------+------------+------+------+--------+
+| EMPNO | ENAME  | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+--------+----------+------+------------+------+------+--------+
+|  7566 | JONES  | MANAGER  | 7839 | 1981-04-02 | 3273 | NULL |     20 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 3135 | NULL |     30 |
+|  7782 | CLARK  | MANAGER  | 7839 | 1981-06-09 | 2695 | NULL |     20 |
+|  7788 | SCOTT  | ANALYST  | 7566 | 1982-12-09 | 3300 | NULL |     40 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500 |    0 |     30 |
+|  7876 | ADAMS  | CLERK    | 7788 | 1983-01-12 | 1210 | NULL |     20 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 | 1045 | NULL |     30 |
+|  7902 | FORD   | ANALYST  | 7566 | 1981-12-03 | 3300 | NULL |     20 |
++-------+--------+----------+------+------------+------+------+--------+
+```
+
+---
+
+### 65. Display those employees whose joining DATE is available in deptno
+```sql
+SELECT * FROM employee WHERE DAY(HIREDATE)=DEPTNO;
+```
+
+### 📊 Output
+```sql
+Empty set (0.003 sec)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
