@@ -34,6 +34,9 @@ DESC employee;
 | DEPTNO   | int(2)        | YES  | MUL | NULL    |       |
 +----------+---------------+------+-----+---------+-------+
 ```
+
+---
+
 ## Department Table Structure:
 ```sql
 CREATE TABLE department(
@@ -114,6 +117,9 @@ SELECT * FROM employee;
 | 7934  | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL  | 10     |
 +-------+--------+-----------+------+------------+------+-------+--------+
 ```
+
+---
+
 ### 1. Create Employee_master table with data using Employee table.
 ```sql
 CREATE TABLE employee_master AS SELECT * FROM employee;
@@ -149,6 +155,9 @@ SELECT * FROM employee_master;
 | 7934  | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL  | 10     |
 +-------+--------+-----------+------+------------+------+-------+--------+
 ```
+
+---
+
 ### 2. Delete all record into Employee_master whose DeptNo is 10
 ```sql
 DELETE FROM employee_master WHERE DEPTNO = 10;
@@ -200,6 +209,9 @@ SELECT EMPNO, ENAME, SAL, DEPTNO FROM employee_master;
 | 7902  | FORD   | 3300.00| 20     |
 +-------+--------+--------+--------+
 ```
+
+---
+
 ### 4. Alter SAL with size 10,2 in Employee_Master
 ```sql
 ALTER TABLE employee_master MODIFY SAL DECIMAL(10,2);
@@ -220,6 +232,9 @@ DESC employee_master;
 | DEPTNO   | int(2)        | YES  | MUL | NULL    |       |
 +----------+---------------+------+-----+---------+-------+
 ```
+
+---
+
 ### 5. Drop Employee_master Table
 ```sql
 DROP TABLE employee_master;
@@ -234,6 +249,9 @@ SHOW TABLES;
 | employee                  |
 +---------------------------+
 ```
+
+---
+
 ### 6. List all distinct job in Employee.
 ```sql
 SELECT DISTINCT JOB FROM employee;
@@ -270,6 +288,9 @@ SELECT * FROM employee WHERE DEPTNO = 30;
 | 7900  | JAMES  | CLERK     | 7698 | 1981-12-03 | 950  | NULL  | 30     |
 +-------+--------+-----------+------+------------+------+-------+--------+
 ```
+
+---
+
 ### 8. Find all department number with department names greater than 20.
 ```sql
 SELECT * FROM department WHERE DEPTNO > 20;
@@ -283,6 +304,9 @@ SELECT * FROM department WHERE DEPTNO > 20;
 | 40     | OPERATIONS  |
 +--------+-------------+
 ```
+
+---
+
 ### 9. Find all information about all the managers as well as the clerks in department 30.
 ```sql
 SELECT * FROM employee 
@@ -298,6 +322,9 @@ WHERE DEPTNO = 30 AND (JOB = 'MANAGER' OR JOB = 'CLERK');
 | 7900  | JAMES  | CLERK     | 7698 | 1981-12-03 | 950  | NULL  | 30     |
 +-------+--------+-----------+------+------------+------+-------+--------+
 ```
+
+---
+
 ### 10. List the Employee name, Employee numbers and department of all clerks.
 ```sql
 SELECT ENAME, EMPNO, DEPTNO FROM employee WHERE JOB = 'CLERK';
@@ -314,6 +341,9 @@ SELECT ENAME, EMPNO, DEPTNO FROM employee WHERE JOB = 'CLERK';
 | MILLER | 7934  | 10     |
 +--------+-------+--------+
 ```
+
+---
+
 ### 11. Find all managers not in department 30.
 ```sql
 SELECT * FROM employee WHERE JOB = 'MANAGER' AND DEPTNO != 30;
@@ -364,6 +394,9 @@ WHERE SAL BETWEEN 1200 AND 1400;
 | MILLER | CLERK     | 1300 |
 +--------+-----------+------+
 ```
+
+---
+
 ### 14. List Name and Department Number of employee who are clerks, analyst or salesman.
 ```sql
 SELECT ENAME, DEPTNO FROM employee 
@@ -384,6 +417,9 @@ WHERE JOB IN ('CLERK','ANALYST','SALESMAN');
 | MILLER | 10     |
 +--------+--------+
 ```
+
+---
+
 ### 15. List Name and Department Number of employee whose names began with M.
 ```sql
 SELECT ENAME, DEPTNO FROM employee 
