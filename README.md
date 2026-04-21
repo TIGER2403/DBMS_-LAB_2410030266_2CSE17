@@ -787,7 +787,7 @@ FROM employee
 ORDER BY TOTALSAL;
 ```
 
-## 📊 Output
+### 📊 Output
 ```sql
 +--------+------+--------+--------+--------+-----------+
 | ENAME  | SAL  | HRA    | DA     | PF     | TOTALSAL  |
