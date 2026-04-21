@@ -1,7 +1,5 @@
 # DBMS_LAB_2410030266_2CSE17
 
-```markdown
-# DBMS Lab
 ```sql
 CREATE DATABASE himanshu_2cse17;
 ```
@@ -22,7 +20,7 @@ FOREIGN KEY (DEPTNO) REFERENCES department(DEPTNO)
 DESC employee;
 ```
 
-```
+```sql
 +----------+---------------+------+-----+---------+-------+
 | Field    | Type          | Null | Key | Default | Extra |
 +----------+---------------+------+-----+---------+-------+
@@ -116,7 +114,5 @@ SELECT * FROM employee;
 | 7934  | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL  | 10     |
 +-------+--------+-----------+------+------------+------+-------+--------+
 ```
-```sql
-SELECT * FROM employee;
-```
+
 
