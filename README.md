@@ -128,6 +128,7 @@ SELECT * FROM employee_master;
 +---------------------------+
 | department                |
 | employee                  |
+| employee_master           |
 +---------------------------+
 
 +-------+--------+-----------+------+------------+------+-------+--------+
@@ -148,6 +149,89 @@ SELECT * FROM employee_master;
 | 7902  | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL  | 20     |
 | 7934  | MILLER | CLERK     | 7782 | 1982-01-23 | 1300 | NULL  | 10     |
 +-------+--------+-----------+------+------------+------+-------+--------+
+```
+## 2. Delete all record into Employee_master whose DeptNo is 10
+```sql
+DELETE FROM employee_master WHERE DEPTNO = 10;
+SELECT * FROM employee_master;
+```
+```sql
++-------+--------+-----------+------+------------+------+-------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM  | DEPTNO |
++-------+--------+-----------+------+------------+------+-------+--------+
+| 7369  | SMITH  | CLERK     | 7902 | 1980-12-17 | 800  | NULL  | 20     |
+| 7499  | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600 | 300   | 30     |
+| 7521  | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250 | 300   | 30     |
+| 7566  | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975 | NULL  | 20     |
+| 7654  | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250 | 1400  | 30     |
+| 7698  | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850 | NULL  | 30     |
+| 7788  | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000 | NULL  | 40     |
+| 7844  | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500 | 0     | 30     |
+| 7876  | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100 | NULL  | 20     |
+| 7900  | JAMES  | CLERK     | 7698 | 1981-12-03 | 950  | NULL  | 30     |
+| 7902  | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000 | NULL  | 20     |
++-------+--------+-----------+------+------------+------+-------+--------+
+```
+
+---
+
+## 3. Update 10% in salary of DEPTNO 20 into Employee_Master
+```sql
+UPDATE employee_master 
+SET SAL = SAL + (SAL * 0.10) 
+WHERE DEPTNO = 20;
+SELECT EMPNO, ENAME, SAL, DEPTNO FROM employee_master;
+```
+```sql
++-------+--------+--------+--------+
+| EMPNO | ENAME  | SAL    | DEPTNO |
++-------+--------+--------+--------+
+| 7369  | SMITH  | 880.00 | 20     |
+| 7499  | ALLEN  | 1600.00| 30     |
+| 7521  | WARD   | 1250.00| 30     |
+| 7566  | JONES  | 3272.50| 20     |
+| 7654  | MARTIN | 1250.00| 30     |
+| 7698  | BLAKE  | 2850.00| 30     |
+| 7788  | SCOTT  | 3000.00| 40     |
+| 7844  | TURNER | 1500.00| 30     |
+| 7876  | ADAMS  | 1210.00| 20     |
+| 7900  | JAMES  | 950.00 | 30     |
+| 7902  | FORD   | 3300.00| 20     |
++-------+--------+--------+--------+
+```
+## 4. Alter SAL with size 10,2 in Employee_Master
+```sql
+ALTER TABLE employee_master MODIFY SAL DECIMAL(10,2);
+DESC employee_master;
+```
+```sql
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| EMPNO    | int(4)        | NO   | PRI | NULL    |       |
+| ENAME    | varchar(20)   | NO   |     | NULL    |       |
+| JOB      | varchar(20)   | YES  |     | NULL    |       |
+| MGR      | int(4)        | YES  |     | NULL    |       |
+| HIREDATE | date          | YES  |     | NULL    |       |
+| SAL      | decimal(10,2) | YES  |     | NULL    |       |
+| COMM     | decimal(7,0)  | YES  |     | NULL    |       |
+| DEPTNO   | int(2)        | YES  | MUL | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+```
+## 5. Drop Employee_master Table
+```sql
+DROP TABLE employee_master;
+SHOW TABLES;
+```
+
+## 📊 Output
+```sql
++---------------------------+
+| Tables_in_himanshu_2cse17 |
++---------------------------+
+| department                |
+| employee                  |
++---------------------------+
 ```
 
 
