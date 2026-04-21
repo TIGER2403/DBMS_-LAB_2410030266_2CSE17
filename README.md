@@ -1,4 +1,7 @@
 # DBMS_LAB_2410030266_2CSE17
+
+```markdown
+# DBMS Lab
 ```sql
 CREATE DATABASE himanshu_2cse17;
 ```
