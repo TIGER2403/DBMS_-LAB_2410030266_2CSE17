@@ -23,3 +23,15 @@
 | DNAME  | varchar(15) | NO   |     | NULL    |       |
 +--------+-------------+------+-----+---------+-------+
 ```
+### Elements Of Department Table;
+```
++--------+-------------+
+| DEPTNO | DNAME       |
++--------+-------------+
+| 10     | RESEARCH    |
+| 20     | ACCOUNTING  |
+| 30     | SALES       |
+| 40     | OPERATIONS  |
++--------+-------------+
+```
+
