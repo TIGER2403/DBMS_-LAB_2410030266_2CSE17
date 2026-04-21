@@ -1433,7 +1433,234 @@ Empty set (0.003 sec)
 
 ```
 
+### 66. Compute the Number of Days Remaining in This Year
+```sql
+SELECT CURDATE() AS TODAY,
+CONCAT(YEAR(CURDATE()), '-12-31') AS YEAR_END,
+DATEDIFF(CONCAT(YEAR(CURDATE()), '-12-31'),
+CURDATE()) AS DAYS_REMAINING;
+```
 
+### 📊 Output
+```sql
++------------+------------+----------------+
+| TODAY      | YEAR_END   | DAYS_REMAINING |
++------------+------------+----------------+
+| 2026-02-12 | 2026-12-31 |            322 |
++------------+------------+----------------+
+```
+
+---
+
+### 67. Display the maximum salary, minimum salary, and the difference between them
+```sql
+SELECT MAX(SAL) AS HIGHEST_SALARY,
+       MIN(SAL) AS LOWEST_SALARY,
+       MAX(SAL) - MIN(SAL) AS DIFFERENCE
+FROM EMPLOYEE;
+```
+
+### 📊 Output
+```sql
++----------------+---------------+------------+
+| HIGHEST_SALARY | LOWEST_SALARY | DIFFERENCE |
++----------------+---------------+------------+
+|           5000 |           800 |       4200 |
++----------------+---------------+------------+
+
+```
+
+---
+
+### 68. Find employees where COMM > 25% of SAL.
+```sql
+SELECT ENAME, SAL, COMM,
+SAL * 0.25 AS SAL_25_PERCENT
+FROM EMPLOYEE
+WHERE COMM > SAL * 0.25;
+```
+
+### 📊 Output
+```sql
++--------+------+------+----------------+
+| ENAME  | SAL  | COMM | SAL_25_PERCENT |
++--------+------+------+----------------+
+| MARTIN | 1250 | 1400 |         312.50 |
++--------+------+------+----------------+
+1 row in set (0.001 sec)
+```
+
+---
+
+### 69. Display employee salaries formatted with a dollar sign ($) prefix.
+```sql
+SELECT ENAME,
+CONCAT('$', FORMAT(SAL, 2)) AS SALARY_IN_DOLLARS
+FROM EMPLOYEE;
+```
+
+### 📊 Output
+```sql
++--------+-------------------+
+| ENAME  | SALARY_IN_DOLLARS |
++--------+-------------------+
+| SMITH  | $800.00           |
+| ALLEN  | $1,600.00         |
+| WARD   | $1,250.00         |
+| JONES  | $2,975.00         |
+| MARTIN | $1,250.00         |
+| BLAKE  | $2,850.00         |
+| CLARK  | $2,450.00         |
+| SCOTT  | $3,000.00         |
+| KING   | $5,000.00         |
+| TURNER | $1,500.00         |
+| ADAMS  | $1,100.00         |
+| JAMES  | $950.00           |
+| FORD   | $3,000.00         |
+| MILLER | $1,300.00         |
++--------+-------------------+
+```
+
+---
+
+### 70. Create a cross-tabulation (matrix/pivot) showing each job, the salary for that job in each department, and the total salary across all departments.
+```sql
+SELECT JOB,
+       SUM(CASE WHEN DEPTNO = 10 THEN SAL ELSE 0 END) AS DEPT_10,
+       SUM(CASE WHEN DEPTNO = 20 THEN SAL ELSE 0 END) AS DEPT_20,
+       SUM(CASE WHEN DEPTNO = 30 THEN SAL ELSE 0 END) AS DEPT_30,
+       SUM(CASE WHEN DEPTNO = 40 THEN SAL ELSE 0 END) AS DEPT_40,
+       SUM(SAL) AS TOTAL_SALARY
+FROM EMPLOYEE
+GROUP BY JOB
+ORDER BY JOB;
+```
+
+### 📊 Output
+```
++-----------+---------+---------+---------+---------+--------------+
+| JOB       | DEPT_10 | DEPT_20 | DEPT_30 | DEPT_40 | TOTAL_SALARY |
++-----------+---------+---------+---------+---------+--------------+
+| ANALYST   |       0 |    3000 |       0 |    3000 |         6000 |
+| CLERK     |    1300 |    1900 |     950 |       0 |         4150 |
+| MANAGER   |       0 |    5425 |    2850 |       0 |         8275 |
+| PRESIDENT |       0 |    5000 |       0 |       0 |         5000 |
+| SALESMAN  |       0 |       0 |    5600 |       0 |         5600 |
++-----------+---------+---------+---------+---------+--------------+
+
+```
+
+---
+
+### 71. Display the total number of employees and how many were hired in each year (1980, 1981, 1982, 1983).
+```sql
+SELECT COUNT(*) AS TOTAL_EMPLOYEES,
+       SUM(CASE WHEN YEAR(HIREDATE) = 1980 THEN 1 ELSE 0 END) AS HIRED_1980,
+       SUM(CASE WHEN YEAR(HIREDATE) = 1981 THEN 1 ELSE 0 END) AS HIRED_1981,
+       SUM(CASE WHEN YEAR(HIREDATE) = 1982 THEN 1 ELSE 0 END) AS HIRED_1982,
+       SUM(CASE WHEN YEAR(HIREDATE) = 1983 THEN 1 ELSE 0 END) AS HIRED_1983
+FROM EMPLOYEE;
+```
+
+### 📊 Output
+```sql
++-----------------+------------+------------+------------+------------+
+| TOTAL_EMPLOYEES | HIRED_1980 | HIRED_1981 | HIRED_1982 | HIRED_1983 |
++-----------------+------------+------------+------------+------------+
+|              14 |          1 |         10 |          2 |          1 |
++-----------------+------------+------------+------------+------------+
+```
+
+---
+
+### 72. Find the last Sunday of the current month.
+```sql
+SELECT LAST_DAY(CURDATE()) AS LAST_DAY_OF_MONTH,
+DATE_SUB(LAST_DAY(CURDATE()),
+INTERVAL WEEKDAY(LAST_DAY(CURDATE()) + INTERVAL 1 DAY) DAY) AS LAST_SUNDAY;
+```
+
+### 📊 Output
+```sql
++-------------------+-------------+
+| LAST_DAY_OF_MONTH | LAST_SUNDAY |
++-------------------+-------------+
+| 2026-04-30        | 2026-04-26  |
++-------------------+-------------+
+```
+
+---
+
+### 73. Display Department Numbers and Total Number of Employees in Each Department
+```sql
+SELECT DEPTNO,
+COUNT(*) AS TOTAL_EMPLOYEES
+FROM EMPLOYEE
+GROUP BY DEPTNO
+ORDER BY DEPTNO;
+```
+
+### 📊 Output
+```sql
++--------+-----------------+
+| DEPTNO | TOTAL_EMPLOYEES |
++--------+-----------------+
+|     10 |               1 |
+|     20 |               6 |
+|     30 |               5 |
+|     40 |               1 |
++--------+-----------------+
+
+```
+
+---
+
+### 74. Display the Various Jobs and Total Number of Employees Within Each Job Group
+```sql
+SELECT JOB,
+COUNT(*) AS TOTAL_EMPLOYEES
+FROM EMPLOYEE
+GROUP BY JOB
+ORDER BY TOTAL_EMPLOYEES DESC;
+```
+
+### 📊 Output
+```sql
++-----------+-----------------+
+| JOB       | TOTAL_EMPLOYEES |
++-----------+-----------------+
+| SALESMAN  |               4 |
+| CLERK     |               4 |
+| MANAGER   |               3 |
+| ANALYST   |               2 |
+| PRESIDENT |               1 |
++-----------+-----------------+
+
+```
+
+---
+
+### 75. Display the Department Numbers and Total Salary for Each Department
+```sql
+SELECT DEPTNO,
+SUM(SAL) AS TOTAL_SALARY
+FROM EMPLOYEE
+GROUP BY DEPTNO
+ORDER BY DEPTNO;
+```
+
+### 📊 Output
+```sql
++--------+--------------+
+| DEPTNO | TOTAL_SALARY |
++--------+--------------+
+|     10 |         1300 |
+|     20 |        14325 |
+|     30 |        10450 |
+|     40 |         3000 |
++--------+--------------+
+```
+---
 
 
 
