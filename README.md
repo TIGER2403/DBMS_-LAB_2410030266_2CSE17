@@ -645,6 +645,244 @@ Empty set
 
 ---
 
+### 26. Employees joined before 30-June-1980 or after 31-Dec-1981
+```sql
+SELECT ENAME, HIREDATE FROM employee 
+WHERE HIREDATE < '1980-06-30' OR HIREDATE > '1981-12-31';
+```
+
+### 📊 Output
+```sql
++--------+------------+
+| ENAME  | HIREDATE   |
++--------+------------+
+| SCOTT  | 1982-12-09 |
+| ADAMS  | 1983-01-12 |
+| MILLER | 1982-01-23 |
++--------+------------+
+```
+
+---
+
+### 27. Names having second alphabet A
+```sql
+SELECT ENAME FROM employee WHERE ENAME LIKE '_A%';
+```
+
+### 📊 Output
+```sql
++--------+
+| ENAME  |
++--------+
+| JAMES  |
+| WARD   |
+| MARTIN |
++--------+
+```
+
+---
+
+### 28. Names exactly five characters
+```sql
+SELECT ENAME FROM employee WHERE ENAME LIKE '_____';
+```
+
+### 📊 Output
+```sql
++-------+
+| ENAME |
++-------+
+| SMITH |
+| ALLEN |
+| WARD  |
+| JONES |
+| BLAKE |
+| CLARK |
+| SCOTT |
+| ADAMS |
+| JAMES |
+| FORD  |
++-------+
+```
+
+---
+
+### 29. Names having second alphabet A (same as Q2)
+```sql
+SELECT ENAME FROM employee WHERE ENAME LIKE '_A%';
+```
+
+### 📊 Output
+```sql
++--------+
+| ENAME  |
++--------+
+| JAMES  |
+| WARD   |
+| MARTIN |
++--------+
+```
+
+---
+
+### 30. Employees not working as salesman, clerk or analyst
+```sql
+SELECT ENAME FROM employee 
+WHERE JOB NOT IN ('SALESMAN','CLERK','ANALYST');
+```
+
+### 📊 Output
+```sql
++--------+
+| ENAME  |
++--------+
+| JONES  |
+| BLAKE  |
+| CLARK  |
+| KING   |
++--------+
+```
+
+---
+
+### 31. Name with annual salary (highest first)
+```sql
+SELECT ENAME, SAL*12 AS ANNUAL_SAL 
+FROM employee 
+ORDER BY ANNUAL_SAL DESC;
+```
+
+### 📊 Output
+```sql
++--------+-------------+
+| ENAME  | ANNUAL_SAL  |
++--------+-------------+
+| KING   | 60000       |
+| SCOTT  | 36000       |
+| FORD   | 36000       |
+| JONES  | 35700       |
+| BLAKE  | 34200       |
+| CLARK  | 29400       |
+| ALLEN  | 19200       |
+| TURNER | 18000       |
+| WARD   | 15000       |
+| MARTIN | 15000       |
+| MILLER | 15600       |
+| ADAMS  | 13200       |
+| JAMES  | 11400       |
+| SMITH  | 9600        |
++--------+-------------+
+```
+
+---
+
+### 32. Salary breakdown
+```sql
+SELECT ENAME, SAL,
+(SAL*0.15) AS HRA,
+(SAL*0.10) AS DA,
+(SAL*0.05) AS PF,
+(SAL + (SAL*0.15) + (SAL*0.10) - (SAL*0.05)) AS TOTALSAL
+FROM employee
+ORDER BY TOTALSAL;
+```
+
+## 📊 Output
+```sql
++--------+------+--------+--------+--------+-----------+
+| ENAME  | SAL  | HRA    | DA     | PF     | TOTALSAL  |
++--------+------+--------+--------+--------+-----------+
+| SMITH  | 800  | 120.00 | 80.00  | 40.00  | 960.00    |
+| JAMES  | 950  | 142.50 | 95.00  | 47.50  | 1140.00   |
+| ADAMS  | 1100 | 165.00 | 110.00 | 55.00  | 1320.00   |
+| MILLER | 1300 | 195.00 | 130.00 | 65.00  | 1560.00   |
+| WARD   | 1250 | 187.50 | 125.00 | 62.50  | 1500.00   |
+| MARTIN | 1250 | 187.50 | 125.00 | 62.50  | 1500.00   |
+| TURNER | 1500 | 225.00 | 150.00 | 75.00  | 1800.00   |
+| ALLEN  | 1600 | 240.00 | 160.00 | 80.00  | 1920.00   |
+| CLARK  | 2450 | 367.50 | 245.00 | 122.50 | 2940.00   |
+| BLAKE  | 2850 | 427.50 | 285.00 | 142.50 | 3420.00   |
+| JONES  | 2975 | 446.25 | 297.50 | 148.75 | 3570.00   |
+| SCOTT  | 3000 | 450.00 | 300.00 | 150.00 | 3600.00   |
+| FORD   | 3000 | 450.00 | 300.00 | 150.00 | 3600.00   |
+| KING   | 5000 | 750.00 | 500.00 | 250.00 | 6000.00   |
++--------+------+--------+--------+--------+-----------+
+```
+
+---
+
+### 33. Update salary by 10% where no commission
+```sql
+UPDATE employee 
+SET SAL = SAL + (SAL*0.10) 
+WHERE COMM IS NULL;
+
+SELECT ENAME, SAL FROM employee;
+```
+
+### 📊 Output
+```sql
++-------+--------+--------+-------+
+| EMPNO | ENAME  | SAL    | COMM  |
++-------+--------+--------+-------+
+| 7369  | SMITH  | 880.00 | NULL  |
+| 7499  | ALLEN  | 1600   | 300   |
+| 7521  | WARD   | 1250   | 300   |
+| 7566  | JONES  | 3272.50| NULL  |
+| 7654  | MARTIN | 1250   | 1400  |
+| 7698  | BLAKE  | 3135.00| NULL  |
+| 7782  | CLARK  | 2695.00| NULL  |
+| 7788  | SCOTT  | 3300.00| NULL  |
+| 7839  | KING   | 5500.00| NULL  |
+| 7844  | TURNER | 1500   | 0     |
+| 7876  | ADAMS  | 1210.00| NULL  |
+| 7900  | JAMES  | 950    | NULL  |
+| 7902  | FORD   | 3300.00| NULL  |
+| 7934  | MILLER | 1430.00| NULL  |
++-------+--------+--------+-------+
+```
+
+---
+
+### 34. Employees with salary >3000 after 20% increment
+```sql
+SELECT ENAME, SAL*1.20 AS NEW_SAL 
+FROM employee 
+WHERE (SAL*1.20) > 3000;
+```
+
+### 📊 Output
+```sql
++--------+---------+
+| ENAME  | NEW_SAL |
++--------+---------+
+| JONES  | 3570    |
+| BLAKE  | 3420    |
+| SCOTT  | 3600    |
+| FORD   | 3600    |
+| KING   | 6000    |
++--------+---------+
+```
+
+---
+
+### 35. Employees whose salary has at least 3 digits
+```sql
+SELECT ENAME, SAL FROM employee 
+WHERE SAL >= 100;
+```
+
+### 📊 Output
+```sql
++--------+------+
+| ENAME  | SAL  |
++--------+------+
+| SMITH  | 800  |
+| JAMES  | 950  |
++--------+------+
+```
+
+
 
 
 
