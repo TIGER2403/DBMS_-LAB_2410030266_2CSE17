@@ -1,6 +1,7 @@
 # DBMS_LAB_2410030266_2CSE17
+```sql
 CREATE DATABASE himanshu_2cse17;
-
+```
 ## Employee Table Structure:
 ```sql
 CREATE TABLE employee(
@@ -14,10 +15,8 @@ COMM DECIMAL(7,0),
 DEPTNO INT(2),
 FOREIGN KEY (DEPTNO) REFERENCES department(DEPTNO)
 );
-```
 
-```sql
-   DESC employee;
+DESC employee;
 ```
 
 ```
@@ -35,13 +34,15 @@ FOREIGN KEY (DEPTNO) REFERENCES department(DEPTNO)
 +----------+---------------+------+-----+---------+-------+
 ```
 ## Department Table Structure:
-```
+```sql
 CREATE TABLE department(
 DEPTNO INT(2) PRIMARY KEY,
 DNAME VARCHAR(15) NOT NULL);
 ```
-```DESC department;````
-```
+```sql
+DESC department;
+````
+```sql
 +--------+-------------+------+-----+---------+-------+
 | Field  | Type        | Null | Key | Default | Extra |
 +--------+-------------+------+-----+---------+-------+
@@ -73,7 +74,7 @@ SELECT * FROM department;
 +--------+-------------+
 ```
 ### Elements Of Employee Table;
-```
+```sql
 INSERT INTO employee VALUES (7369,'SMITH','CLERK',7902,'1980-12-17',800,NULL,20);
 INSERT INTO employee (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO) VALUES
 (7499,'ALLEN','SALESMAN',7698,'1981-02-20',1600,300,30),
@@ -89,9 +90,10 @@ INSERT INTO employee (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO) VALUE
 (7900,'JAMES','CLERK',7698,'1981-12-03',950,NULL,30),
 (7902,'FORD','ANALYST',7566,'1981-12-03',3000,NULL,20),
 (7934,'MILLER','CLERK',7782,'1982-01-23',1300,NULL,10);
-````
-```SELECT * FROM employee;```
+
+SELECT * FROM employee;
 ```
+```sql
 +-------+--------+-----------+------+------------+------+-------+--------+
 | EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM  | DEPTNO |
 +-------+--------+-----------+------+------------+------+-------+--------+
