@@ -121,7 +121,7 @@ SHOW TABLES;
 SELECT * FROM employee_master;
 ```
 
-### 📊 
+### 
 ```sql
 +---------------------------+
 | Tables_in_himanshu_2cse17 |
