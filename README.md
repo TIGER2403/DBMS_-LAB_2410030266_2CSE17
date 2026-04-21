@@ -2,7 +2,7 @@
 CREATE DATABASE himanshu_2cse17;
 
 ## Employee Table Structure:
-```
+```sql
 CREATE TABLE employee(
 EMPNO INT(4) PRIMARY KEY,
 ENAME VARCHAR(20) NOT NULL,
@@ -16,7 +16,8 @@ FOREIGN KEY (DEPTNO) REFERENCES department(DEPTNO)
 );
 ```
 
-```DESC employee;
+```sql
+   DESC employee;
 ```
 
 ```
@@ -49,8 +50,10 @@ DNAME VARCHAR(15) NOT NULL);
 +--------+-------------+------+-----+---------+-------+
 ```
 ### Elements Of Department Table:
-USE himanshu_2cse17;
-
+```sql
+   USE himanshu_2cse17;
+```
+```sql
 INSERT INTO department (DEPTNO, DNAME) VALUES
 (10, 'RESEARCH'),
 (20, 'ACCOUNTING'),
@@ -59,6 +62,7 @@ INSERT INTO department (DEPTNO, DNAME) VALUES
 
 SELECT * FROM department;
 ```
+```sql
 +--------+-------------+
 | DEPTNO | DNAME       |
 +--------+-------------+
