@@ -426,7 +426,7 @@ SELECT ENAME, DEPTNO FROM employee
 WHERE ENAME LIKE 'M%';
 ```
 
-## 📊 Output
+### 📊 Output
 ```sql
 +--------+--------+
 | ENAME  | DEPTNO |
@@ -435,5 +435,216 @@ WHERE ENAME LIKE 'M%';
 | MILLER | 10     |
 +--------+--------+
 ```
+
+---
+
+### 16. List all employees and jobs in Department 30 in descending order by salary.
+```sql
+SELECT ENAME, JOB, SAL FROM employee 
+WHERE DEPTNO = 30 
+ORDER BY SAL DESC;
+```
+
+### 📊 Output
+```sql
++--------+-----------+------+
+| ENAME  | JOB       | SAL  |
++--------+-----------+------+
+| BLAKE  | MANAGER   | 2850 |
+| ALLEN  | SALESMAN  | 1600 |
+| TURNER | SALESMAN  | 1500 |
+| WARD   | SALESMAN  | 1250 |
+| MARTIN | SALESMAN  | 1250 |
+| JAMES  | CLERK     | 950  |
++--------+-----------+------+
+```
+
+---
+
+### 17. List job and Department Number of employees whose name are five letters long begin with “A” and end with “N”.
+```sql
+SELECT JOB, DEPTNO FROM employee 
+WHERE ENAME LIKE 'A___N';
+```
+
+### 📊 Output
+```sql
++------+--------+
+| JOB  | DEPTNO |
++------+--------+
+| SALESMAN | 30 |
++------+--------+
+```
+
+---
+
+### 18. Display the name of employees whose name start with alphabet S.
+```sql
+SELECT ENAME FROM employee WHERE ENAME LIKE 'S%';
+```
+
+### 📊 Output
+```sql
++-------+
+| ENAME |
++-------+
+| SMITH |
+| SCOTT |
++-------+
+```
+
+---
+
+### 19. Display the names of employees whose name ends with alphabet S.
+```sql
+SELECT ENAME FROM employee WHERE ENAME LIKE '%S';
+```
+
+### 📊 Output
+```sql
++-------+
+| ENAME |
++-------+
+| JONES |
+| ADAMS |
++-------+
+```
+
+---
+
+### 20. Display the names of employees working in department number 10 or 20 or 40 or employees working as clerks, salesman or analyst.
+```sql
+SELECT ENAME FROM employee 
+WHERE DEPTNO IN (10,20,40) 
+OR JOB IN ('CLERK','SALESMAN','ANALYST');
+```
+
+### 📊 Output
+```sql
++--------+
+| ENAME  |
++--------+
+| SMITH  |
+| ALLEN  |
+| WARD   |
+| JONES  |
+| MARTIN |
+| BLAKE  |
+| CLARK  |
+| SCOTT  |
+| KING   |
+| TURNER |
+| ADAMS  |
+| JAMES  |
+| FORD   |
+| MILLER |
++--------+
+```
+
+---
+
+### 21. Display employee number and names for employees who earn commission.
+```sql
+SELECT EMPNO, ENAME FROM employee WHERE COMM IS NOT NULL AND COMM > 0;
+```
+
+### 📊 Output
+```sql
++-------+--------+
+| EMPNO | ENAME  |
++-------+--------+
+| 7499  | ALLEN  |
+| 7521  | WARD   |
+| 7654  | MARTIN |
++-------+--------+
+```
+
+---
+
+### 22. Display employee number and total salary for each employee.
+```sql
+SELECT EMPNO, SAL + IFNULL(COMM,0) AS TOTAL_SAL FROM employee;
+```
+
+### 📊 Output
+```sql
++-------+-----------+
+| EMPNO | TOTAL_SAL |
++-------+-----------+
+| 7369  | 800       |
+| 7499  | 1900      |
+| 7521  | 1550      |
+| 7566  | 2975      |
+| 7654  | 2650      |
+| 7698  | 2850      |
+| 7782  | 2450      |
+| 7788  | 3000      |
+| 7839  | 5000      |
+| 7844  | 1500      |
+| 7876  | 1100      |
+| 7900  | 950       |
+| 7902  | 3000      |
+| 7934  | 1300      |
++-------+-----------+
+```
+
+---
+
+### 23. Display employee number and annual salary for each employee.
+```sql
+SELECT EMPNO, SAL * 12 AS ANNUAL_SAL FROM employee;
+```
+
+### 📊 Output
+```sql
++-------+-------------+
+| EMPNO | ANNUAL_SAL  |
++-------+-------------+
+| 7369  | 9600        |
+| 7499  | 19200       |
+| 7521  | 15000       |
+| 7566  | 35700       |
+| 7654  | 15000       |
+| 7698  | 34200       |
+| 7782  | 29400       |
+| 7788  | 36000       |
+| 7839  | 60000       |
+| 7844  | 18000       |
+| 7876  | 13200       |
+| 7900  | 11400       |
+| 7902  | 36000       |
+| 7934  | 15600       |
++-------+-------------+
+```
+
+---
+
+### 24. Display the names of all employees working as clerks and drawing a salary more than 3,000.
+```sql
+SELECT ENAME FROM employee 
+WHERE JOB = 'CLERK' AND SAL > 3000;
+```
+
+### 📊 Output
+```sql
+Empty set
+```
+
+---
+
+### 25. Display the names of employees who are working as clerk, salesman or analyst and drawing a salary more than 3,000.
+```sql
+SELECT ENAME FROM employee 
+WHERE JOB IN ('CLERK','SALESMAN','ANALYST') AND SAL > 3000;
+```
+
+### 📊 Output
+```sql
+Empty set
+```
+
+---
+
+
 
 
