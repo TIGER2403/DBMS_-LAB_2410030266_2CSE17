@@ -882,6 +882,300 @@ WHERE SAL >= 100;
 +--------+------+
 ```
 
+---
+
+### 36. Display the total number of employee working in the company.
+```sql
+SELECT COUNT(*) FROM employee;
+```
+
+### 📊 Output
+```sql
++----------+
+| COUNT(*) |
++----------+
+| 14       |
++----------+
+```
+
+---
+
+### 37. Display the total salary being paid to all employees.
+```sql
+SELECT SUM(SAL) FROM employee;
+```
+
+### 📊 Output
+```sql
++----------+
+| SUM(SAL) |
++----------+
+| 29025    |
++----------+
+```
+
+---
+
+### 38. Display the maximum salary from employee table.
+```sql
+SELECT MAX(SAL) FROM employee;
+```
+
+### 📊 Output
+```sql
++----------+
+| MAX(SAL) |
++----------+
+| 5000     |
++----------+
+```
+
+---
+
+### 39. Display the minimum salary from employee table.
+```sql
+SELECT MIN(SAL) FROM employee;
+```
+
+### 📊 Output
+```sql
++----------+
+| MIN(SAL) |
++----------+
+| 800      |
++----------+
+```
+
+---
+
+### 40. Display the average salary from employee table
+```sql
+SELECT AVG(SAL) FROM employee;
+```
+
+### 📊 Output
+```sql
++----------+
+| AVG(SAL) |
++----------+
+| 2073.21  |
++----------+
+```
+
+---
+
+### 41. Display the maximum salary being paid to clerk.
+```sql
+SELECT MAX(SAL) FROM employee WHERE JOB='CLERK';
+```
+
+### 📊 Output
+```sql
++----------+
+| MAX(SAL) |
++----------+
+| 1300     |
++----------+
+```
+
+---
+
+### 42. Display the maximum salary being paid in dept no 20.
+```sql
+SELECT MAX(SAL) FROM employee WHERE DEPTNO=20;
+```
+
+### 📊 Output
+```sql
++----------+
+| MAX(SAL) |
++----------+
+| 3000     |
++----------+
+```
+
+---
+
+### 43. Display the minimum salary paid to any salesman.
+```sql
+SELECT MIN(SAL) FROM employee WHERE JOB='SALESMAN';
+```
+
+### 📊 Output
+```sql
++----------+
+| MIN(SAL) |
++----------+
+| 1250     |
++----------+
+```
+
+---
+
+### 44. Display the average salary drawn by managers.
+```sql
+SELECT AVG(SAL) FROM employee WHERE JOB='MANAGER';
+```
+
+### 📊 Output
+```sql
++----------+
+| AVG(SAL) |
++----------+
+| 2758.33  |
++----------+
+```
+
+---
+
+### 45. Display the total salary drawn by analyst working in dept no 40.
+```sql
+SELECT SUM(SAL) FROM employee WHERE JOB='ANALYST' AND DEPTNO=40;
+```
+
+### 📊 Output
+```sql
++----------+
+| SUM(SAL) |
++----------+
+| 3000     |
++----------+
+```
+
+---
+
+### 46. Display the names of the employee in Uppercase.
+```sql
+SELECT UPPER(ENAME) FROM employee;
+```
+
+### 📊 Output
+```sql
++--------+
+| UPPER  |
++--------+
+| SMITH  |
+| ALLEN  |
+| WARD   |
+| JONES  |
+| MARTIN |
+| BLAKE  |
+| CLARK  |
+| SCOTT  |
+| KING   |
+| TURNER |
+| ADAMS  |
+| JAMES  |
+| FORD   |
+| MILLER |
++--------+
+```
+
+---
+
+### 47. Display the names of the employee in Lowercase.
+```sql
+SELECT LOWER(ENAME) FROM employee;
+```
+
+### 📊 Output
+```sql
++--------+
+| LOWER  |
++--------+
+| smith  |
+| allen  |
+| ward   |
+| jones  |
+| martin |
+| blake  |
+| clark  |
+| scott  |
+| king   |
+| turner |
+| adams  |
+| james  |
+| ford   |
+| miller |
++--------+
+```
+
+---
+
+### 48. Display the names of the employee in Proper case.
+```sql
+SELECT CONCAT(UPPER(SUBSTRING(ENAME,1,1)), LOWER(SUBSTRING(ENAME,2))) FROM employee;
+```
+
+### 📊 Output
+```sql
++--------+
+| PROPER |
++--------+
+| Smith  |
+| Allen  |
+| Ward   |
+| Jones  |
+| Martin |
+| Blake  |
+| Clark  |
+| Scott  |
+| King   |
+| Turner |
+| Adams  |
+| James  |
+| Ford   |
+| Miller |
++--------+
+```
+
+---
+
+### 49. Display the length of Your name using appropriate function.
+```sql
+SELECT LENGTH('HIMANSHU');
+```
+
+### 📊 Output
+```sql
++--------------------+
+| LENGTH('HIMANSHU') |
++--------------------+
+| 8                  |
++--------------------+
+```
+
+---
+
+### 50. Display the length of all the employee names.
+```sql
+SELECT ENAME, LENGTH(ENAME) FROM employee;
+```
+
+### 📊 Output
+```sql
++--------+----------------+
+| ENAME  | LENGTH(ENAME)  |
++--------+----------------+
+| SMITH  | 5              |
+| ALLEN  | 5              |
+| WARD   | 4              |
+| JONES  | 5              |
+| MARTIN | 6              |
+| BLAKE  | 5              |
+| CLARK  | 5              |
+| SCOTT  | 5              |
+| KING   | 4              |
+| TURNER | 6              |
+| ADAMS  | 5              |
+| JAMES  | 5              |
+| FORD   | 4              |
+| MILLER | 6              |
++--------+----------------+
+```
+
+---
+
 
 
 
